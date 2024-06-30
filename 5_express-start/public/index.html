@@ -1,0 +1,39 @@
+<html>
+<link rel="stylesheet" href="style.css"></link>
+
+<body>
+    <form>
+        <div>
+            <label for="address">Address</label>
+            <input id="address" name="address" />
+        </div>
+
+        <div>
+            <label for="code">Postal Code</label>
+            <input id="code" name="postal_code" />
+        </div>
+
+        <button type="submit">Send</button>
+    </form>
+</body>
+
+<script>
+    const form = document.forms[0];
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+        const data = new URLSearchParams(formData);
+        console.log(data.toString());
+
+        fetch("http://localhost:3000/info", {
+            method: "POST",
+            // headers: {
+
+            // }
+            body: data,
+        });
+    });
+</script>
+
+</html>
